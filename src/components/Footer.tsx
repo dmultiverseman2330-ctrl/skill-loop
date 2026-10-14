@@ -40,13 +40,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDevGuide, onExplore }) => 
 
           {/* Neighborhood Hubs */}
           <div className="space-y-2 text-xs">
-            <h4 className="font-bold text-white uppercase tracking-wider text-[11px]">Neighborhood Loops</h4>
+            <h4 className="font-bold text-white uppercase tracking-wider text-[11px]">Coimbatore Loops</h4>
             <ul className="space-y-1.5 text-stone-400">
-              <li>Mission District, SF</li>
-              <li>Hayes Valley, SF</li>
-              <li>Noe Valley & Castro, SF</li>
-              <li>Richmond & Sunset, SF</li>
-              <li>Pacific Heights, SF</li>
+              <li>Ganapathy, Coimbatore</li>
+              <li>Saravanampatti & Kalapatti, Coimbatore</li>
+              <li>RS Puram, Coimbatore</li>
+              <li>Peelamedu & TIDEL Park, Coimbatore</li>
+              <li>Saibaba Colony & Gandhipuram, Coimbatore</li>
             </ul>
           </div>
 

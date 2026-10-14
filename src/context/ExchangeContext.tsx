@@ -56,9 +56,9 @@ interface ExchangeContextType {
 
 const ExchangeContext = createContext<ExchangeContextType | undefined>(undefined);
 
-const STORAGE_KEY_EXCHANGES = 'skillloop_exchanges';
-const STORAGE_KEY_REVIEWS = 'skillloop_reviews';
-const STORAGE_KEY_MESSAGES = 'skillloop_chat_messages';
+const STORAGE_KEY_EXCHANGES = 'skillloop_exchanges_cbe_gnp_srp_v3';
+const STORAGE_KEY_REVIEWS = 'skillloop_reviews_cbe_gnp_srp_v3';
+const STORAGE_KEY_MESSAGES = 'skillloop_chat_messages_cbe_gnp_srp_v3';
 
 export const ExchangeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { currentUser } = useAuth();
@@ -102,17 +102,17 @@ export const ExchangeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
           {
             id: 'msg_1',
             exchangeId: 'exch_demo_1',
-            senderId: 'user_marcus_888',
-            recipientId: 'user_sarah_999',
-            text: "Hey Sarah! Can't wait for our session on Saturday. Should I bring anything specific for the wheel throwing?",
+            senderId: 'user_sivaraj_888',
+            recipientId: 'user_dharani_999',
+            text: "Vanakkam Dharani! Looking forward to our session this Saturday at your Ganapathy pottery workshop. Should I bring anything specific?",
             timestamp: 'Yesterday, 4:12 PM',
           },
           {
             id: 'msg_2',
             exchangeId: 'exch_demo_1',
-            senderId: 'user_sarah_999',
-            recipientId: 'user_marcus_888',
-            text: "Just wear clothes you don't mind getting clay on and trim your fingernails! I'll have all the clay, ribs, and aprons ready. See you at 10!",
+            senderId: 'user_dharani_999',
+            recipientId: 'user_sivaraj_888',
+            text: "Vanakkam Sivaraj! Just wear comfortable clothes and trim your nails for centering clay. I have all the terracotta clay, wheel tools, and fresh filter coffee ready. See you at 10:30 AM!",
             timestamp: 'Yesterday, 5:30 PM',
           },
         ];
@@ -122,17 +122,17 @@ export const ExchangeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       {
         id: 'msg_1',
         exchangeId: 'exch_demo_1',
-        senderId: 'user_marcus_888',
-        recipientId: 'user_sarah_999',
-        text: "Hey Sarah! Can't wait for our session on Saturday. Should I bring anything specific for the wheel throwing?",
+        senderId: 'user_sivaraj_888',
+        recipientId: 'user_dharani_999',
+        text: "Vanakkam Dharani! Looking forward to our session this Saturday at your Ganapathy pottery workshop. Should I bring anything specific?",
         timestamp: 'Yesterday, 4:12 PM',
       },
       {
         id: 'msg_2',
         exchangeId: 'exch_demo_1',
-        senderId: 'user_sarah_999',
-        recipientId: 'user_marcus_888',
-        text: "Just wear clothes you don't mind getting clay on and trim your fingernails! I'll have all the clay, ribs, and aprons ready. See you at 10!",
+        senderId: 'user_dharani_999',
+        recipientId: 'user_sivaraj_888',
+        text: "Vanakkam Sivaraj! Just wear comfortable clothes and trim your nails for centering clay. I have all the terracotta clay, wheel tools, and fresh filter coffee ready. See you at 10:30 AM!",
         timestamp: 'Yesterday, 5:30 PM',
       },
     ];

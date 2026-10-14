@@ -13,11 +13,15 @@ import {
   ShieldCheck, 
   Smartphone,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Camera,
+  Edit3,
+  CheckCircle2
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useExchange } from '../context/ExchangeContext';
 import { AddSkillModal } from './AddSkillModal';
+import { EditProfileModal } from './EditProfileModal';
 
 interface DashboardViewProps {
   onOpenExchanges: () => void;
@@ -31,12 +35,15 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenExchanges })
     addLearningWish, 
     removeLearningWish,
     switchDemoUser,
+    setUserName,
     isDevMode
   } = useAuth();
   
   const { reviews, exchanges } = useExchange();
 
   const [modalType, setModalType] = useState<'teaching' | 'learning' | null>(null);
+  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
+  const [successToast, setSuccessToast] = useState<string | null>(null);
 
   if (!currentUser) {
     return (
@@ -48,6 +55,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenExchanges })
     );
   }
 
+  const showToast = (msg: string) => {
+    setSuccessToast(msg);
+    setTimeout(() => {
+      setSuccessToast(null);
+    }, 4000);
+  };
+
   const myReviews = reviews.filter(r => r.targetUserId === currentUser.id);
   const activeExchangesCount = exchanges.filter(
     e => (e.senderId === currentUser.id || e.receiverId === currentUser.id) && e.status === 'accepted'
@@ -55,23 +69,47 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenExchanges })
 
   return (
     <div className="max-w-5xl mx-auto py-6 px-4">
+      {/* Toast Notification */}
+      {successToast && (
+        <div className="fixed bottom-6 right-6 z-50 bg-stone-900 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs font-semibold animate-in slide-in-from-bottom-5 duration-200 border border-stone-800">
+          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+          <span>{successToast}</span>
+        </div>
+      )}
+
       {/* Profile Overview Card */}
       <div className="bg-white rounded-3xl border border-stone-200/90 p-6 sm:p-8 shadow-xs mb-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b border-stone-100">
-          <div className="flex items-center gap-4">
-            <div className="relative">
+          <div className="flex items-center gap-5">
+            {/* Clickable Avatar to change picture */}
+            <div 
+              onClick={() => setIsEditProfileModalOpen(true)}
+              className="relative group cursor-pointer"
+              title="Click to change profile picture"
+            >
               <img
                 src={currentUser.avatar}
                 alt={currentUser.name}
-                className="w-20 h-20 rounded-2xl object-cover ring-4 ring-emerald-500/20 shadow-md"
+                className="w-20 h-20 rounded-2xl object-cover ring-4 ring-emerald-500/20 shadow-md group-hover:opacity-90 transition"
               />
-              <span className="absolute -bottom-1 -right-1 bg-emerald-600 text-white rounded-full p-1 shadow-xs">
+              <div className="absolute inset-0 bg-black/35 rounded-2xl flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition">
+                <Camera className="w-5 h-5" />
+              </div>
+              <span className="absolute -bottom-1 -right-1 bg-emerald-600 text-white rounded-full p-1 shadow-xs ring-2 ring-white">
                 <ShieldCheck className="w-4 h-4" />
               </span>
             </div>
+
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2.5 mb-1">
                 <h1 className="text-2xl font-black text-stone-900">{currentUser.name}</h1>
+                <button
+                  onClick={() => setIsEditProfileModalOpen(true)}
+                  className="flex items-center gap-1.5 text-xs font-bold bg-emerald-50 hover:bg-emerald-100 text-emerald-800 px-3 py-1 rounded-xl border border-emerald-200 transition shadow-2xs"
+                >
+                  <Edit3 className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Edit Profile & Location</span>
+                </button>
                 {currentUser.isDemoAccount && (
                   <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded uppercase">
                     Demo Account
@@ -80,8 +118,8 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenExchanges })
               </div>
               <p className="text-sm font-semibold text-emerald-800">{currentUser.tagline}</p>
               <div className="flex flex-wrap items-center gap-3 text-xs text-stone-500 mt-1">
-                <span className="flex items-center gap-1 font-medium">
-                  <MapPin className="w-3.5 h-3.5 text-stone-400" />
+                <span className="flex items-center gap-1 font-medium bg-emerald-50/70 text-emerald-950 px-2 py-0.5 rounded-lg border border-emerald-100">
+                  <MapPin className="w-3.5 h-3.5 text-emerald-600" />
                   <span>{currentUser.neighborhood}, {currentUser.city}</span>
                 </span>
                 <span>•</span>
@@ -98,7 +136,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenExchanges })
           {isDevMode && (
             <div className="bg-stone-50 p-3 rounded-2xl border border-stone-200 flex flex-col gap-2 shrink-0">
               <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400">
-                Dev Account Switcher
+                Coimbatore Demo Switcher
               </span>
               <div className="flex items-center gap-2">
                 <button
@@ -109,7 +147,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenExchanges })
                       : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-100'
                   }`}
                 >
-                  Sarah Chen
+                  Dharani (Ganapathy)
                 </button>
                 <button
                   onClick={() => switchDemoUser('8880002221')}
@@ -119,7 +157,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenExchanges })
                       : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-100'
                   }`}
                 >
-                  Marcus Vance
+                  Sivaraj (Saravanampatti)
                 </button>
               </div>
             </div>
@@ -323,6 +361,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onOpenExchanges })
           onAddLearning={addLearningWish}
         />
       )}
+
+      {/* Edit Profile & Location Modal */}
+      <EditProfileModal
+        isOpen={isEditProfileModalOpen}
+        onClose={() => setIsEditProfileModalOpen(false)}
+        onSuccess={showToast}
+      />
     </div>
   );
 };

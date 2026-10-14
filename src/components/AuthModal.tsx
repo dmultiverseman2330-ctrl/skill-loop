@@ -156,9 +156,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                       onClick={() => handleQuickDemoClick('9990003331')}
                       className="p-2.5 bg-white hover:bg-emerald-100/50 rounded-xl border border-emerald-200 text-left transition shadow-xs"
                     >
-                      <span className="block font-bold text-stone-900 text-xs">Sarah Chen</span>
+                      <span className="block font-bold text-stone-900 text-xs">Dharani</span>
                       <span className="block font-mono text-[11px] text-emerald-700">9990003331</span>
-                      <span className="block text-[10px] text-stone-400">Pottery & French</span>
+                      <span className="block text-[10px] text-stone-400">Ganapathy • Terracotta & Art</span>
                     </button>
 
                     <button
@@ -166,9 +166,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                       onClick={() => handleQuickDemoClick('8880002221')}
                       className="p-2.5 bg-white hover:bg-emerald-100/50 rounded-xl border border-emerald-200 text-left transition shadow-xs"
                     >
-                      <span className="block font-bold text-stone-900 text-xs">Marcus Vance</span>
+                      <span className="block font-bold text-stone-900 text-xs">Sivaraj</span>
                       <span className="block font-mono text-[11px] text-emerald-700">8880002221</span>
-                      <span className="block text-[10px] text-stone-400">React & Woodwork</span>
+                      <span className="block text-[10px] text-stone-400">Saravanampatti • React & Tech</span>
                     </button>
                   </div>
                 </div>

@@ -134,10 +134,10 @@ export const DevGuideModal: React.FC<DevGuideModalProps> = ({ isOpen, onClose })
             </h4>
             <div className="p-3.5 rounded-xl bg-stone-50 border border-stone-200/80 text-xs text-stone-700 space-y-1.5">
               <p>
-                • <strong>Sarah Chen:</strong> <code>9990003331</code> (Pottery, French, Sourdough)
+                • <strong>Dharani:</strong> <code>9990003331</code> (Ganapathy, Coimbatore • Terracotta Pottery, French, Filter Coffee)
               </p>
               <p>
-                • <strong>Marcus Vance:</strong> <code>8880002221</code> (React Web Dev, Woodworking, Espresso)
+                • <strong>Sivaraj:</strong> <code>8880002221</code> (Saravanampatti, Coimbatore • Modern React, Woodworking, Python)
               </p>
               <p className="text-stone-500">
                 Guarded in <code>AuthContext.tsx</code>: if not in development or if <code>simulateProduction</code> is on, bypass login is rejected immediately.

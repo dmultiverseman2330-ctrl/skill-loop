@@ -23,8 +23,8 @@ export const MessagesView: React.FC<MessagesViewProps> = ({ initialPartnerId }) 
   // Pick partner: if initialPartnerId provided, or first neighbor with chat
   const [selectedPartnerId, setSelectedPartnerId] = useState<string>(() => {
     if (initialPartnerId) return initialPartnerId;
-    if (currentUser?.phone === '9990003331') return 'user_marcus_888';
-    if (currentUser?.phone === '8880002221') return 'user_sarah_999';
+    if (currentUser?.phone === '9990003331') return 'user_sivaraj_888';
+    if (currentUser?.phone === '8880002221') return 'user_dharani_999';
     return allNeighbors.find(n => n.id !== currentUser?.id)?.id || '';
   });
 

@@ -10,6 +10,7 @@ interface AuthContextType {
   loginWithDemoPhone: (phone: string) => { success: boolean; message: string };
   loginWithCredentials: (email: string, password: string) => { success: boolean; message: string };
   switchDemoUser: (phone: '9990003331' | '8880002221') => void;
+  setUserName: (name: string) => void;
   logout: () => void;
   updateProfile: (updatedData: Partial<UserProfile>) => void;
   addTeachingSkill: (skill: Omit<Skill, 'id'>) => void;
@@ -20,7 +21,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const STORAGE_KEY_USER = 'skillloop_current_user';
+const STORAGE_KEY_USER = 'skillloop_current_user_cbe_gnp_srp_v3';
 const STORAGE_KEY_PROD_SIM = 'skillloop_sim_prod';
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -38,7 +39,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const effectiveDevMode = actualDev && !simulateProduction;
 
-  // Initialize with Sarah Chen by default for seamless interactive demo in development
+  // Initialize with Dharani (Ganapathy, Coimbatore) by default
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(() => {
     const saved = localStorage.getItem(STORAGE_KEY_USER);
     if (saved) {
@@ -64,6 +65,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.setItem(STORAGE_KEY_PROD_SIM, String(value));
   };
 
+  const setUserName = (name: string) => {
+    if (!currentUser || !name.trim()) return;
+    setCurrentUser(prev => prev ? { ...prev, name: name.trim() } : null);
+  };
+
   const loginWithDemoPhone = (phone: string): { success: boolean; message: string } => {
     const cleanPhone = phone.replace(/\D/g, '');
 
@@ -79,7 +85,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setCurrentUser(DEMO_USER_SARAH);
       return {
         success: true,
-        message: 'Welcome back, Sarah Chen! Logged in via Dev Demo Mode.',
+        message: `Vanakkam ${DEMO_USER_SARAH.name}! Logged in to Ganapathy, Coimbatore account.`,
       };
     }
 
@@ -87,13 +93,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setCurrentUser(DEMO_USER_MARCUS);
       return {
         success: true,
-        message: 'Welcome back, Marcus Vance! Logged in via Dev Demo Mode.',
+        message: `Vanakkam ${DEMO_USER_MARCUS.name}! Logged in to Saravanampatti, Coimbatore account.`,
       };
     }
 
     return {
       success: false,
-      message: 'Unrecognized demo phone number. Authorized demo numbers for dev testing are 9990003331 and 8880002221.',
+      message: 'Unrecognized demo phone number. Authorized demo numbers for Coimbatore dev testing are 9990003331 and 8880002221.',
     };
   };
 
@@ -110,13 +116,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return { success: false, message: 'Please enter both email and password.' };
     }
     // Simulate credential verification
-    if (email.toLowerCase().includes('marcus')) {
+    if (email.toLowerCase().includes('sivaraj') || email.toLowerCase().includes('marcus')) {
       setCurrentUser(DEMO_USER_MARCUS);
-      return { success: true, message: 'Signed in as Marcus Vance.' };
+      return { success: true, message: `Signed in as ${DEMO_USER_MARCUS.name} (Saravanampatti, Coimbatore).` };
     }
-    if (email.toLowerCase().includes('sarah')) {
+    if (email.toLowerCase().includes('dharani') || email.toLowerCase().includes('sarah')) {
       setCurrentUser(DEMO_USER_SARAH);
-      return { success: true, message: 'Signed in as Sarah Chen.' };
+      return { success: true, message: `Signed in as ${DEMO_USER_SARAH.name} (Ganapathy, Coimbatore).` };
     }
     
     // Generic user creation for testing arbitrary accounts
@@ -125,14 +131,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     
     const newUser: UserProfile = {
       id: `user_${Date.now()}`,
-      name: formattedName || 'Community Neighbor',
-      phone: '4155550199',
+      name: formattedName || 'Coimbatore Neighbor',
+      phone: '9840199999',
       email: email,
       avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=300&auto=format&fit=crop&q=80',
       tagline: 'Passionate Skill Enthusiast',
-      bio: 'Excited to learn new crafts and share what I know with local neighbors!',
-      neighborhood: 'Mission District',
-      city: 'San Francisco, CA',
+      bio: 'Excited to learn new crafts and share what I know with Coimbatore neighbors!',
+      neighborhood: 'RS Puram',
+      city: 'Coimbatore, Tamil Nadu',
       distanceKm: 1.2,
       rating: 5.0,
       reviewCount: 0,
@@ -145,7 +151,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
     
     setCurrentUser(newUser);
-    return { success: true, message: `Welcome to SkillLoop, ${newUser.name}!` };
+    return { success: true, message: `Welcome to SkillLoop Coimbatore, ${newUser.name}!` };
   };
 
   const logout = () => {
@@ -210,6 +216,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         loginWithDemoPhone,
         loginWithCredentials,
         switchDemoUser,
+        setUserName,
         logout,
         updateProfile,
         addTeachingSkill,

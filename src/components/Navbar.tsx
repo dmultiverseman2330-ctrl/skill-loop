@@ -40,14 +40,14 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Dev Mode Notification Top Bar */}
       {isDevMode && (
         <div className="bg-amber-500/10 border-b border-amber-500/20 px-4 py-1.5 text-xs text-amber-900 flex items-center justify-between">
-          <div className="flex items-center gap-2 max-w-4xl mx-auto w-full justify-between">
+          <div className="flex items-center gap-2 max-w-5xl mx-auto w-full justify-between flex-wrap">
             <div className="flex items-center gap-1.5 font-medium">
               <span className="flex h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
-              <span>Dev Demo Active: Quick login ready for</span>
+              <span>Coimbatore Dev Demo:</span>
               <span className="font-mono bg-amber-100 px-1.5 py-0.5 rounded text-amber-950 font-bold">9990003331</span>
-              <span>(Sarah) &</span>
+              <span>(Dharani • Ganapathy) &</span>
               <span className="font-mono bg-amber-100 px-1.5 py-0.5 rounded text-amber-950 font-bold">8880002221</span>
-              <span>(Marcus)</span>
+              <span>(Sivaraj • Saravanampatti)</span>
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -58,7 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     : 'bg-white hover:bg-stone-100 text-stone-700 border border-amber-200'
                 }`}
               >
-                Act as Sarah
+                Act as Dharani (Ganapathy)
               </button>
               <button
                 onClick={() => switchDemoUser('8880002221')}
@@ -68,13 +68,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                     : 'bg-white hover:bg-stone-100 text-stone-700 border border-amber-200'
                 }`}
               >
-                Act as Marcus
+                Act as Sivaraj (Saravanampatti)
               </button>
               <button 
                 onClick={onOpenDevGuide}
                 className="underline hover:text-amber-950 ml-1 font-semibold"
               >
-                Security & Vercel Info
+                Diagnostics & Vercel
               </button>
             </div>
           </div>
@@ -108,8 +108,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="text-xl font-black tracking-tight text-stone-900 group-hover:text-emerald-700 transition">
                 Skill<span className="text-emerald-600">Loop</span>
               </span>
-              <span className="block text-[10px] font-semibold uppercase tracking-wider text-stone-400 -mt-1">
-                Local Skill Exchange
+              <span className="block text-[10px] font-semibold uppercase tracking-wider text-emerald-700 -mt-1">
+                Coimbatore Skill Exchange
               </span>
             </div>
           </div>
