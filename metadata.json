@@ -1,0 +1,8 @@
+{
+  "name": "SkillLoop - Local Skill Exchange",
+  "description": "Connect with neighbors to trade talents, swap skills, and grow together. Discover community members teaching pottery, coding, cooking, languages, and more.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
